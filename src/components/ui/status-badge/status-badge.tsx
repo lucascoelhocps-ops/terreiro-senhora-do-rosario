@@ -1,6 +1,6 @@
 'use client';
 
-import '../../styles/status-badge.css';
+import '../../../styles/status-badge.css';
 
 export interface StatusBadgeProps {
   /** Status do pagamento */

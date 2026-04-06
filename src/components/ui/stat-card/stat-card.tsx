@@ -1,6 +1,6 @@
 'use client';
 
-import '../../styles/stat-card.css';
+import '../../../styles/stat-card.css';
 
 export interface StatCardProps {
   /** Ícone ou emoji do card */
