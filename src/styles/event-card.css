@@ -1,136 +1,102 @@
-/* Event Card Styles */
+/* Event Card — Sacred Modernism */
 .event-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 20px;
-  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-  border: 2px solid #d4a574;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  min-width: 300px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+  padding: 20px 20px 20px 24px;
+  background: #fff;
+  border: 1px solid rgba(201, 162, 39, 0.18);
+  border-left: 3px solid var(--color-sacred-red, #8B3A2A);
+  border-radius: 2px;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
 .event-card:hover {
-  box-shadow: 0 8px 16px rgba(212, 165, 116, 0.3);
+  border-left-color: var(--color-sacred-gold, #C9A227);
+  box-shadow: 0 4px 16px rgba(139, 58, 42, 0.12);
   transform: translateY(-2px);
-  border-color: #c9945f;
 }
 
 .event-card--disabled {
-  opacity: 0.7;
-  background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
-.event-card--disabled:hover {
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Header */
+/* Header do Card */
 .event-card__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .event-card__entity {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  color: #7d5a3d;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  background: rgba(212, 165, 116, 0.15);
-  padding: 4px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
+  letter-spacing: 0.08em;
+  color: var(--color-sacred-gold, #C9A227);
+  font-family: var(--font-body, 'Inter', sans-serif);
 }
 
-/* Status */
+/* Status Badge */
 .event-card__status {
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-family: var(--font-body, 'Inter', sans-serif);
 }
 
 .event-card__status--confirmed {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background-color: rgba(34, 197, 94, 0.12);
+  color: #15803d;
 }
 
 .event-card__status--cancelled {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
 }
 
-/* Title */
+/* Título */
 .event-card__title {
-  margin: 0;
   font-size: 18px;
-  font-weight: 700;
-  color: #2c1810;
+  font-weight: 600;
+  margin: 0 0 8px;
   line-height: 1.3;
+  color: var(--color-dark, #0D0B08);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
 }
 
-/* Description */
+/* Descrição */
 .event-card__description {
-  margin: 0;
-  font-size: 14px;
-  color: #5a4a42;
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 12px;
   line-height: 1.5;
+  font-family: var(--font-body, 'Inter', sans-serif);
 }
 
 /* Footer */
 .event-card__footer {
-  display: flex;
-  gap: 16px;
-  margin-top: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .event-card__info {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.event-card__date {
-  font-size: 14px;
-  color: #7d5a3d;
-  font-weight: 500;
-}
-
+.event-card__date,
 .event-card__time {
-  font-size: 14px;
-  color: #7d5a3d;
-  font-weight: 500;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .event-card {
-    min-width: 100%;
-  }
-
-  .event-card__title {
-    font-size: 16px;
-  }
-
-  .event-card__description {
-    font-size: 13px;
-  }
-
-  .event-card__header {
-    flex-wrap: wrap;
-  }
-
-  .event-card__entity {
-    font-size: 11px;
-  }
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #6b7280;
+  font-family: var(--font-body, 'Inter', sans-serif);
 }

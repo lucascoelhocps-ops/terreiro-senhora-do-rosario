@@ -1,8 +1,8 @@
-/* Hero Section Styles */
+/* Hero Section — Sacred Modernism */
 .hero {
   position: relative;
   width: 100%;
-  min-height: 500px;
+  min-height: 100svh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,76 +12,115 @@
   overflow: hidden;
 }
 
+/* Overlay terracota — evoca velas e terra */
 .hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(44, 24, 16, 0.3) 0%, rgba(125, 90, 61, 0.2) 100%);
-}
-
-.hero__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: opacity 0.3s ease;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(13, 11, 8, 0.72) 0%,
+    rgba(139, 58, 42, 0.55) 50%,
+    rgba(42, 35, 24, 0.80) 100%
+  );
   z-index: 1;
 }
 
+.hero__overlay {
+  display: none; /* overlay feito via ::before */
+}
+
+/* Conteúdo */
 .hero__content {
   position: relative;
   z-index: 2;
-  max-width: 600px;
+  max-width: 700px;
   text-align: center;
-  color: white;
-  padding: 40px 20px;
+  color: var(--color-cream, #FAF5EC);
+  padding: 48px 24px;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Eyebrow acima do título */
+.hero__eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-sacred-gold, #C9A227);
+  margin-bottom: 16px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  animation: heroFadeUp 0.9s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Título — Cormorant Garamond grande */
 .hero__title {
-  font-size: 48px;
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(40px, 6vw, 80px);
   font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 16px 0;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  line-height: 1.1;
+  margin: 0 0 20px;
   letter-spacing: -0.5px;
+  color: var(--color-cream, #FAF5EC);
+  animation: heroFadeUp 0.9s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Separador dourado */
+.hero__divider {
+  width: 48px;
+  height: 2px;
+  background: var(--color-sacred-gold, #C9A227);
+  margin: 0 auto 20px;
+  animation: heroFadeUp 0.9s 0.26s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .hero__subtitle {
-  font-size: 18px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(15px, 2vw, 18px);
   font-weight: 400;
-  line-height: 1.6;
-  margin: 0 0 32px 0;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  opacity: 0.95;
+  line-height: 1.65;
+  margin: 0 0 36px;
+  opacity: 0.88;
+  animation: heroFadeUp 0.9s 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* CTA Button */
 .hero__button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
-  background: linear-gradient(135deg, #d4a574 0%, #c9945f 100%);
-  color: white;
+  gap: 10px;
+  padding: 15px 36px;
+  background: var(--color-sacred-red, #8B3A2A);
+  color: var(--color-cream, #FAF5EC);
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 2px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 250ms ease;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+  letter-spacing: 0.1em;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  animation: heroFadeUp 0.9s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  text-decoration: none;
 }
 
 .hero__button:hover {
-  background: linear-gradient(135deg, #c9945f 0%, #b8814a 100%);
+  background: var(--color-sacred-amber, #D4813A);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(212, 165, 116, 0.5);
+  box-shadow: 0 8px 24px rgba(139, 58, 42, 0.35);
 }
 
 .hero__button:active {
@@ -89,54 +128,28 @@
 }
 
 .hero__button-arrow {
-  font-weight: 700;
-  transition: transform 0.3s ease;
+  font-weight: 400;
+  transition: transform 250ms ease;
 }
 
 .hero__button:hover .hero__button-arrow {
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
   .hero {
-    min-height: 400px;
-  }
-
-  .hero__title {
-    font-size: 36px;
-  }
-
-  .hero__subtitle {
-    font-size: 16px;
-  }
-
-  .hero__content {
-    padding: 30px 20px;
+    min-height: 85svh;
   }
 }
 
 @media (max-width: 480px) {
-  .hero {
-    min-height: 320px;
-  }
-
-  .hero__title {
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-
-  .hero__subtitle {
-    font-size: 14px;
-    margin-bottom: 24px;
+  .hero__content {
+    padding: 32px 20px;
   }
 
   .hero__button {
-    padding: 12px 24px;
-    font-size: 14px;
-  }
-
-  .hero__content {
-    padding: 20px 16px;
+    padding: 13px 28px;
+    font-size: 12px;
   }
 }

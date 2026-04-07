@@ -28,40 +28,27 @@ export const Hero = ({
   title,
   subtitle,
   buttonLabel = 'Ver Agenda de Giras',
-  onButtonClick,
   buttonHref = '#agenda',
-  overlayOpacity = 0.4,
 }: HeroProps) => {
-  const handleClick = () => {
-    if (buttonHref.startsWith('#')) {
-      const element = document.querySelector(buttonHref);
-      element?.scrollIntoView({ behavior: 'smooth' });
-    } else if (onButtonClick) {
-      onButtonClick();
-    }
-  };
-
   return (
     <section
       className="hero"
+      aria-label="Introdução do Terreiro"
       style={
-        backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined
+        backgroundImage ? { backgroundImage: `url('${backgroundImage}')` } : undefined
       }
     >
-      <div className="hero__overlay" style={{ opacity: overlayOpacity }} />
-
+      {/* Overlay com gradiente é aplicado via pseudo-elemento no CSS */}
       <div className="hero__content">
+        <span className="hero__eyebrow">Serenidade e Axé</span>
         <h1 className="hero__title">{title}</h1>
+        <div className="hero__divider" aria-hidden="true" />
         <p className="hero__subtitle">{subtitle}</p>
 
-        <button
-          className="hero__button"
-          onClick={handleClick}
-          type="button"
-        >
+        <a className="hero__button" href={buttonHref}>
           {buttonLabel}
           <span className="hero__button-arrow">→</span>
-        </button>
+        </a>
       </div>
     </section>
   );

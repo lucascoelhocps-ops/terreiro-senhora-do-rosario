@@ -1,38 +1,144 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 
+const navLinks = [
+  { href: '/', label: 'Início' },
+  { href: '/sobre', label: 'Sobre Nós' },
+  { href: '/agenda', label: 'Giras' },
+  { href: '/blog', label: 'Blog' },
+];
+
 export const Header = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="w-full border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+    <header
+      className="w-full border-b sticky top-0 z-50"
+      style={{
+        backgroundColor: 'var(--color-cream)',
+        borderColor: 'rgba(201, 162, 39, 0.25)',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
 
-          {/* Logo - Representando o Terreiro */}
-          <div className="flex-shrink-0 flex items-center">
-            <span className="text-2xl font-serif font-bold text-slate-900 tracking-tighter">
-              TERREIRO<span className="text-orange-600">AXÉ</span>
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0 flex items-center cursor-pointer">
+            <span
+              className="text-2xl font-bold tracking-tight"
+              style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-dark)' }}
+            >
+              TERREIRO
+              <span style={{ color: 'var(--color-sacred-red)' }}> SENHORA</span>
             </span>
-          </div>
+          </Link>
 
           {/* Navegação Desktop */}
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors">Início</Link>
-            <Link href="/sobre" className="text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors">Sobre Nós</Link>
-            <Link href="/agenda" className="text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors">Giras</Link>
-            <Link href="/blog" className="text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors">Blog</Link>
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Navegação principal">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="relative text-sm font-medium transition-colors duration-200 group"
+                style={{ color: 'var(--color-dark-muted)', fontFamily: 'var(--font-body)' }}
+              >
+                {label}
+                <span
+                  className="absolute -bottom-0.5 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
+                  style={{ backgroundColor: 'var(--color-sacred-gold)' }}
+                />
+              </Link>
+            ))}
           </nav>
 
-          {/* Botão de Login (Área de Membros) */}
-          <div className="flex items-center">
+          {/* Botão Desktop */}
+          <div className="hidden md:flex items-center">
             <Link
               href="/login"
-              className="ml-8 inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-slate-900 hover:bg-slate-800 transition-all shadow-sm"
+              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium transition-all duration-200 cursor-pointer"
+              style={{
+                backgroundColor: 'var(--color-sacred-red)',
+                color: 'var(--color-cream)',
+                borderRadius: '2px',
+                fontFamily: 'var(--font-body)',
+                letterSpacing: '0.04em',
+              }}
             >
               Área do Filho
             </Link>
           </div>
 
+          {/* Hamburger Mobile */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 cursor-pointer"
+            aria-label={mobileOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            <span
+              className="block w-6 h-px transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--color-dark)',
+                transform: mobileOpen ? 'translateY(5px) rotate(45deg)' : 'none',
+                marginBottom: mobileOpen ? '0' : '5px',
+              }}
+            />
+            <span
+              className="block w-6 h-px transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--color-dark)',
+                opacity: mobileOpen ? 0 : 1,
+                marginBottom: mobileOpen ? '0' : '5px',
+              }}
+            />
+            <span
+              className="block w-6 h-px transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--color-dark)',
+                transform: mobileOpen ? 'translateY(-5px) rotate(-45deg)' : 'none',
+              }}
+            />
+          </button>
         </div>
+      </div>
+
+      {/* Menu Mobile */}
+      <div
+        className="md:hidden overflow-hidden transition-all duration-300"
+        style={{
+          maxHeight: mobileOpen ? '360px' : '0',
+          borderTop: mobileOpen ? '1px solid rgba(201,162,39,0.2)' : 'none',
+          backgroundColor: 'var(--color-cream)',
+        }}
+      >
+        <nav className="flex flex-col px-4 py-4 space-y-4" aria-label="Navegação mobile">
+          {navLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="text-base font-medium py-2 transition-colors duration-200 cursor-pointer"
+              style={{ color: 'var(--color-dark-muted)', fontFamily: 'var(--font-body)' }}
+              onClick={() => setMobileOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+          <Link
+            href="/login"
+            className="inline-flex items-center justify-center px-5 py-3 text-sm font-medium mt-2 cursor-pointer"
+            style={{
+              backgroundColor: 'var(--color-sacred-red)',
+              color: 'var(--color-cream)',
+              borderRadius: '2px',
+              fontFamily: 'var(--font-body)',
+            }}
+            onClick={() => setMobileOpen(false)}
+          >
+            Área do Filho
+          </Link>
+        </nav>
       </div>
     </header>
   );

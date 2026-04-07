@@ -2,6 +2,24 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ─── Sacred Modernism Design System ─── */
+:root {
+  /* Brand Colors — Terreiro Senhora do Rosário */
+  --color-sacred-red:   #8B3A2A;   /* Terracota profundo */
+  --color-sacred-gold:  #C9A227;   /* Dourado ancestral */
+  --color-sacred-amber: #D4813A;   /* Âmbar das velas */
+  --color-cream:        #FAF5EC;   /* Creme off-white */
+  --color-dark:         #0D0B08;   /* Preto noturno */
+  --color-dark-muted:   #2A2318;   /* Marrom escuro */
+
+  /* Tipografia */
+  --font-heading: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  --font-body:    var(--font-body, 'Inter', system-ui, sans-serif);
+
+  /* Spacing */
+  --section-padding: clamp(60px, 8vw, 120px);
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
